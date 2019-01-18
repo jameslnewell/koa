@@ -1,0 +1,5 @@
+.vscode
+lib
+server.sock
+node_modules
+yarn-error.log

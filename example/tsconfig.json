@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "..",
+    "paths": {
+      "reload-middleware": ["./index"]
+    }
+  },
+  "include": [".", "../typings/**/*.d.ts"]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "reload-middleware",
+  "version": "1.0.0",
+  "description": "Reload middleware when it changes.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": "jameslnewell/get-server-address",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "@types/debug": "^0.0.31",
+    "@types/node": "^9.6.40",
+    "caller-path": "^2.0.0",
+    "chalk": "^2.4.2",
+    "debug": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.9",
+    "get-server-address": "^1.0.1",
+    "jest": "^23.6.0",
+    "mock-req": "^0.2.0",
+    "mock-res": "^0.5.0",
+    "ts-jest": "^23.10.5",
+    "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.7.0",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
+  },
+  "scripts": {
+    "check:linting": "tslint --project tsconfig.json",
+    "check:typing:sources": "tsc --noEmit --project tsconfig.sources.json",
+    "check:typing:tests": "tsc --noEmit --project tsconfig.tests.json",
+    "check": "yarn run check:linting && yarn run check:typing:sources && yarn run check:typing:tests",
+    "build": "tsc --project tsconfig.sources.json",
+    "test": "jest",
+    "start": "ts-node --project example/tsconfig.json -r tsconfig-paths/register example/index.ts",
+    "prepublishOnly": "yarn run check && yarn run build && yarn run test"
+  },
+  "license": "MIT"
+}
