@@ -1,24 +1,24 @@
-# reload-middleware
+# koa-reload-middleware
 
-[![CircleCI](https://circleci.com/gh/jameslnewell/reload-middleware.svg?style=svg)](https://circleci.com/gh/jameslnewell/reload-middleware)
+[![CircleCI](https://circleci.com/gh/jameslnewell/koa-reload-middleware.svg?style=svg)](https://circleci.com/gh/jameslnewell/koa-reload-middleware)
 
-Reload middleware when it changes.
+Reload middleware if it changes during development.
 
 ## Installation
 
-```
+```sh
 yarn
 ```
 
 ## Usage
 
-The following code will output: `Listening at http://[::]:8888`.
+The following code will output: `Listening at http://[::]:8080`.
 
 ```js
-import {createServer} from 'http';
+import Koa from 'koa';
+import reload from 'koa-reload-middleware';
 
-createServer(reloadMiddleware('./foobar')).listen();
-
+new Koa().use(reload(() => import('./route'))).listen();
 ```
 
-> Will work with `express`, `connect` or any other server that imitates `Server` from the `net` module.
+> Now you can go and change `./route` and next time the route is requested, the route will automatically reload without restarting the entire server.

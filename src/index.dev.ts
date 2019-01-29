@@ -1,89 +1,82 @@
 
-import * as path from 'path';
-import {IncomingMessage, OutgoingMessage} from 'http';
-import chalk from 'chalk';
+
 import * as debug from 'debug';
-import * as callerPath from 'caller-path';
+import { Middleware } from 'koa';
+import { getLoadedMessage, getErroredMessage, getCreatedMessage } from './utils/messages';
 
-const log = debug('reload-middleware');
+const log = debug('koa-reload-middleware');
+let middlewareCount = 0;
 
-// TODO: remove caller-path magic and use () => import(file)
 // TODO: reload only when changed - currently it reloads every refresh which is very noisy, particularly for frontend
 
-function getLoadedMessage(module: string) {
-  return `loaded ${chalk.bold(`./${path.relative('.', module)}`)}`;
-}
-
-function getErroredMessage(module: string, error?: any) {
-  if (error && error.code === 'MODULE_NOT_FOUND') {
-    return `failed loading module "${module}"`; 
-  } else {
-    return `failed executing module "${module}"`;
-  }
+function getDefaultName() {
+  return `koa-reload-middleware #${middlewareCount++}`;
 }
 
 function clearRequireCache() {
   const appCacheKeys = Object.keys(require.cache).filter(k => !k.includes('node_modules'));
   appCacheKeys.forEach(file => delete require.cache[file]);
-  log('cleared the require cache', appCacheKeys)
-}
-
-function requireMiddleware(module: string, options: Options) {
-  try {
-
-    // load the middleware
-    const middleware = require(require.resolve(module, {paths: [path.dirname(callerPath())]}));
-    console.log(middleware)
-
-    // log the loaded module
-    const message = getLoadedMessage(module);
-    log(message);
-    if (options.verbose) {
-      console.log(message);
-    }
-
-    // return the middleware
-    return middleware.default;
-
-  } catch (error) {
-
-      // log the error
-      const message = getErroredMessage(module, error);
-      log(message, error);
-      if (options.verbose) {
-        console.error(`reload-module: ${message}`);
-        console.error(error);
-      }
-
-      // throw the error
-      throw error;
-
-  }
+  log('require cache cleared', appCacheKeys)
 }
 
 export interface Options {
+  name?: string;
   verbose?: boolean;
 }
 
-export default function<Request extends IncomingMessage, Response extends OutgoingMessage>(module: string, options: Options = {verbose: true}) {  
-  return (req: Request, res: Response, next?: (error: any) => void, error?: any) => {
+export default function(load: () => Promise<any>, options: Options = {}): Middleware { 
+  const {name = getDefaultName(), verbose = true} = options;
+  let requestCount = 0;
+
+  const messageContext = {name};
+
+  // log that the wrapped middleware was created
+  const message = getCreatedMessage(messageContext);
+  log(message);
+
+  const importMiddleware = async () => {
+    try {
+  
+      // load the middleware
+      const module = await load();
+  
+      // log the loaded middleware
+      const message = getLoadedMessage(messageContext);
+      log(message);
+  
+      // return the middleware
+      return module.__esModule ? module.default : module;
+  
+    } catch (error) {
+  
+        // log that the wrapped middleware errored while loading
+        const message = getErroredMessage(error, messageContext);
+        log(message, error);
+        if (options.verbose) {
+          console.error(`koa-reload-middleware: ${message}`);
+          console.error(error);
+        }
+  
+        // throw the error
+        throw error;
+  
+    }
+  }
+
+  return async (ctx, next) => {
     
     // clear the require cache
-    clearRequireCache();
-
-    // load the wrapped middleware
-    let middleware;
-    try {
-      middleware = requireMiddleware(module, options);
-    } catch (error) {
-      if (next) {
-        next(error);
-      }
-      return;
+    if (requestCount > 0) {
+      clearRequireCache();
     }
 
+    // load the wrapped middleware
+    const middleware = await importMiddleware();
+
+    // increment the count
+    ++requestCount;
+
     // execute the wrapped middleware
-    middleware(req, res, next, error);
-    
+    return middleware(ctx, next);
   };
 }
