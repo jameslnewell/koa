@@ -1,65 +1,41 @@
-import * as MockReq from 'mock-req';
-import * as MockRes from 'mock-res';
-import reloadMiddleware from './index.dev';
+import {createMockContext} from '@shopify/jest-koa-mocks';
+import reload from './index.dev';
 
-describe('reload-middleware', () => {
-  const consoleLogSpy = jest.spyOn(global.console, 'log').mockImplementation(() => {});
-  const consoleErrorSpy = jest.spyOn(global.console, 'error').mockImplementation(() => {});
+describe('koa-reload-middleware.dev', () => {
+  const handler = jest.fn();
+  const loader = jest.fn();
 
   beforeEach(() => {
-    consoleLogSpy.mockReset();
-    consoleErrorSpy.mockReset();
+
+    handler.mockReset();
+    handler.mockImplementation(() => {});
+
+    loader.mockReset();
+    loader.mockImplementation(() => Promise.resolve(handler));
+
   });
 
-  it('should clear the cache and reload the module when called multiple times', () => {
-    const middleware = reloadMiddleware('./__fixtures__/okMiddleware');
-    middleware(
-      new MockReq(), 
-      new MockRes()
-    );
-    middleware(
-      new MockReq(), 
-      new MockRes()
-    );
+  it('should call the loader multiple times when the middleware is called multiple times', async () => {
+    const middleware = reload(loader);
+    
+    expect(loader).toBeCalledTimes(0);
+    expect(handler).toBeCalledTimes(0);
+
+    await middleware(createMockContext(), jest.fn());
+    
+    expect(loader).toBeCalledTimes(1);
+    expect(handler).toBeCalledTimes(1);
+
+    await middleware(createMockContext(), jest.fn());
+    
+    expect(loader).toBeCalledTimes(2);
+    expect(handler).toBeCalledTimes(2);
   });
 
-  it('should call the callback with an error when the file does not exist', (done) => {
-    expect.assertions(1);
-    const middleware = reloadMiddleware('./__fixtures__/fileDoesNotExist');
-    middleware(
-      new MockReq(), 
-      new MockRes(),
-      error => {
-        expect(error).toBeDefined();
-        done();
-      }
-    );
-  });
-
-  it('should output an error when the file does not exist and verbose=true', (done) => {
-    expect.assertions(1);
-    const middleware = reloadMiddleware('./__fixtures__/fileDoesNotExist', {verbose: true});
-    middleware(
-      new MockReq(), 
-      new MockRes()
-    );
-    setTimeout(() => {
-      expect(consoleErrorSpy).toBeCalled();
-      done();
-    }, 100);
-  });
-
-  it('should call the callback with an error when the middleware errors', (done) => {
-    expect.assertions(1);
-    const middleware = reloadMiddleware('./__fixtures__/errMiddleware');
-    middleware(
-      new MockReq(), 
-      new MockRes(),
-      error => {
-        expect(error).toBeDefined();
-        done();
-      }
-    );
+  it('should reject when the loader errors', async () => {
+    loader.mockImplementation(() => Promise.reject(new Error('Uh oh!')));
+    const middleware = reload(loader);
+    return expect(middleware(createMockContext(), jest.fn())).rejects.toBeInstanceOf(Error);
   });
 
 });
