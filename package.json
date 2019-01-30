@@ -1,12 +1,14 @@
 {
   "name": "koa-reload-middleware",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reload a middleware if is modified during development.",
   "main": "index.js",
   "types": "index.d.ts",
   "repository": "jameslnewell/koa-reload-middleware",
   "files": [
-    "lib"
+    "lib",
+    "index.js",
+    "index.d.ts"
   ],
   "dependencies": {
     "@types/debug": "^0.0.31",
