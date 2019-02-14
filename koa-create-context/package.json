@@ -1,7 +1,7 @@
 {
-  "name": "koa-create-mock-context",
+  "name": "koa-create-context",
   "version": "1.0.0",
-  "description": "Create a mock context.",
+  "description": "Create a context for mocking or whatever purpose.",
   "repository": "https://github.com/jameslnewell/koa",
   "author": "James Newell <james@digitaledgeit.com.au>",
   "files": [

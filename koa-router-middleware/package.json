@@ -20,7 +20,7 @@
   "devDependencies": {
     "@types/koa": "^2.0.48",
     "koa": "^2.7.0",
-    "koa-create-mock-context": "^1.0.0"
+    "koa-create-context": "^1.0.0"
   },
   "scripts": {
     "build": "tsc",

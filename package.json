@@ -6,7 +6,7 @@
   "repository": "https://github.com/jameslnewell/koa",
   "author": "James Newell <james@digitaledgeit.com.au>",
   "workspaces": [
-    "koa-create-mock-context",
+    "koa-create-context",
     "koa-router-middleware"
   ],
   "license": "MIT",
@@ -33,5 +33,9 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "scripts": {
+    "build": "yarn workspaces run build",
+    "test": "yarn workspaces run test"
   }
 }

@@ -1,6 +1,6 @@
-# koa-create-mock-context
+# koa-create-context
 
-Create a mock context.
+Create a context for mocking or whatever purpose.
 
 ## Installation
 
@@ -11,7 +11,7 @@ yarn
 ## Usage
 
 ```js
-import createContext from "koa-create-mock-context";
+import createContext from "koa-create-context";
 
 const context = createContext({
   status: 201,

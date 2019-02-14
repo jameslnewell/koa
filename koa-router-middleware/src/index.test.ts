@@ -1,5 +1,5 @@
 import { ParameterizedContext } from "koa";
-import createContext from "koa-create-mock-context";
+import createContext from "koa-create-context";
 import Router from "./index";
 
 describe("Router", () => {
@@ -40,7 +40,7 @@ describe("Router", () => {
   });
 
   describe(".middleware ()", () => {
-    it.only("should call the USE middleware and the ANY middleware", async () => {
+    it("should call the USE middleware and the ANY middleware", async () => {
       const ctx = createContext({ method: "post", path: "/" });
       const next = jest.fn();
       await router.middleware()(ctx, next);
