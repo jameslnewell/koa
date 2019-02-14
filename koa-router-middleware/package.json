@@ -1,0 +1,30 @@
+{
+  "name": "koa-router-middleware",
+  "version": "1.0.0",
+  "description": "A router middleware for koa.",
+  "repository": "https://github.com/jameslnewell/koa",
+  "author": "James Newell <james@digitaledgeit.com.au>",
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "dependencies": {
+    "@types/debug": "^4.1.1",
+    "path-to-regexp": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@types/koa": "^2.0.48",
+    "koa": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.48",
+    "koa": "^2.7.0",
+    "koa-create-mock-context": "^1.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "license": "MIT"
+}

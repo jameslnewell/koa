@@ -1,0 +1,29 @@
+{
+  "name": "koa-create-mock-context",
+  "version": "1.0.0",
+  "description": "Create a mock context.",
+  "repository": "https://github.com/jameslnewell/koa",
+  "author": "James Newell <james@digitaledgeit.com.au>",
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "dependencies": {
+    "mock-req": "^0.2.0",
+    "mock-res": "^0.5.0"
+  },
+  "peerDependencies": {
+    "@types/koa": "^2.0.48",
+    "koa": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.48",
+    "koa": "^2.7.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "license": "MIT"
+}

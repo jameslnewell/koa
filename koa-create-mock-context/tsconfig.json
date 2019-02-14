@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "lib",
+    "target": "esnext"
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.ts",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "test/**/*.test.ts",
+    "test/**/*.test.tsx",
+    "typings"
+  ]
+}
