@@ -20,7 +20,7 @@ export default function(
   return async (ctx, next) => {
     // clear the require cache
     if (requestCount > 0) {
-      module.clearCache(context);
+      module.clearCache();
     }
 
     // load the wrapped middleware

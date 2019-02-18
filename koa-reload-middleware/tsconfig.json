@@ -1,10 +1,8 @@
+// used for typechecking by the IDE
 {
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "declaration": false,
-    "lib": ["esnext"],
-    "moduleResolution": "node",
-    "outDir": "lib",
-    "strict": true
+    "noEmit": true
   },
-  "include": ["index.d.ts", "src"]
+  "include": ["index.d.ts", "src", "test"]
 }

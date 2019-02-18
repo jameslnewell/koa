@@ -15,8 +15,11 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: check
-          command: yarn check
+          name: 👮‍♂️ check
+          command: yarn run check
       - run:
-          name: test
-          command: yarn test
+          name: 📋 test
+          command: yarn run test
+      - run:
+          name: 👷‍♂️ build
+          command: yarn run build

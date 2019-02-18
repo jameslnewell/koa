@@ -38,6 +38,6 @@ export function errored(error: any, options: LogOptions) {
   }
 }
 
-export function cleared(files: string[], options: LogOptions) {
+export function cleared(files: string[]) {
   log(`require cache cleared: %o`, files);
 }

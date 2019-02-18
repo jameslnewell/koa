@@ -1,5 +1,7 @@
 # koa-router-middleware
 
+[![CircleCI](https://circleci.com/gh/jameslnewell/koa.svg?style=svg)](https://circleci.com/gh/jameslnewell/koa)
+
 A router middleware for koa.
 
 ## Installation

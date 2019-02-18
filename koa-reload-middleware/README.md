@@ -1,6 +1,6 @@
 # koa-reload-middleware
 
-[![CircleCI](https://circleci.com/gh/jameslnewell/koa-reload-middleware.svg?style=svg)](https://circleci.com/gh/jameslnewell/koa-reload-middleware)
+[![CircleCI](https://circleci.com/gh/jameslnewell/koa.svg?style=svg)](https://circleci.com/gh/jameslnewell/koa)
 
 Reload a middleware if is modified during development.
 

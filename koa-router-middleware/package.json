@@ -9,24 +9,24 @@
   ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "dependencies": {
-    "@types/debug": "^4.1.1",
-    "path-to-regexp": "^3.0.0"
-  },
   "peerDependencies": {
     "@types/koa": "^2.0.48",
     "koa": "^2.7.0"
   },
-  "devDependencies": {
-    "@types/koa": "^2.0.48",
-    "koa": "^2.7.0",
-    "koa-create-context": "^1.0.0"
+  "dependencies": {
+    "@types/debug": "^4.1.1",
+    "path-to-regexp": "^3.0.0"
   },
   "scripts": {
     "clean": "rm -rf lib",
-    "build": "tsc --project tsconfig.json && tsc --project tsconfig.tests.json",
+    "lint:linting:sources": "tslint --config tslint.sources.json --project tsconfig.sources.json",
+    "lint:linting:tests": "tslint --config tslint.tests.json --project tsconfig.tests.json",
+    "lint:typing:sources": "tsc --noEmit --project tsconfig.sources.json",
+    "lint:typing:tests": "tsc --noEmit --project tsconfig.tests.json",
+    "lint": "yarn run lint:linting:sources && yarn run lint:linting:tests && yarn run lint:typing:sources && yarn run lint:typing:tests",
+    "build": "tsc --project tsconfig.sources.json",
     "test": "jest",
-    "prepublishOnly": "yarn run clean && yarn run build && yarn run test"
+    "prepublishOnly": "yarn run check && yarn run test && yarn run build"
   },
   "license": "MIT"
 }

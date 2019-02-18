@@ -1,4 +1,4 @@
-import { createMockContext } from "@shopify/jest-koa-mocks";
+import createContext from "koa-create-context";
 import reload from "./index.prod";
 
 describe("koa-reload-middleware.prod", () => {
@@ -19,12 +19,12 @@ describe("koa-reload-middleware.prod", () => {
     expect(loader).toBeCalledTimes(1);
     expect(handler).toBeCalledTimes(0);
 
-    await middleware(createMockContext(), jest.fn());
+    await middleware(createContext(), jest.fn());
 
     expect(loader).toBeCalledTimes(1);
     expect(handler).toBeCalledTimes(1);
 
-    await middleware(createMockContext(), jest.fn());
+    await middleware(createContext(), jest.fn());
 
     expect(loader).toBeCalledTimes(1);
     expect(handler).toBeCalledTimes(2);
@@ -34,7 +34,7 @@ describe("koa-reload-middleware.prod", () => {
     loader.mockImplementation(() => Promise.reject(new Error("Uh oh!")));
     const middleware = reload(loader);
     return expect(
-      middleware(createMockContext(), jest.fn())
+      middleware(createContext(), jest.fn())
     ).rejects.toBeInstanceOf(Error);
   });
 });

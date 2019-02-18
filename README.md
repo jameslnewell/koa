@@ -6,6 +6,10 @@ A number of packages made to work with koa.
 
 Create a context for mocking or whatever purpose.
 
+## [koa-reload-middleware](./koa-reload-middleware)
+
+Reload a middleware if is modified during development.
+
 ## [koa-router-middleware](./koa-router-middleware)
 
 A router middleware for koa.

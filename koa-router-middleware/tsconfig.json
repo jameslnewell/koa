@@ -1,10 +1,8 @@
+// used for typechecking by the IDE
 {
-  "extends": "../node_modules/@jameslnewell/typescript-config/tsconfig.json",
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "declaration": true,
-    "module": "commonjs",
-    "outDir": "lib",
-    "target": "esnext"
+    "noEmit": true
   },
-  "include": ["typings", "src/**/*.ts", "src/**/*.ts"]
+  "include": ["index.d.ts", "src", "test"]
 }

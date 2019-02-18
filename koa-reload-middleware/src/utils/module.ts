@@ -1,11 +1,11 @@
 import * as log from "./log";
 
-export function clearCache(options: log.LogOptions) {
+export function clearCache() {
   const files = Object.keys(require.cache).filter(
     k => !k.includes("node_modules")
   );
   files.forEach(file => delete require.cache[file]);
-  log.cleared(files, options);
+  log.cleared(files);
 }
 
 export function load(loader: () => Promise<any>, options: log.LogOptions) {
