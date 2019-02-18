@@ -8,18 +8,18 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: install
+          name: "📦 install"
           command: yarn
       - save_cache: 
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:
-          name: 👮‍♂️ check
+          name: "👮‍♂️ check"
           command: yarn run check
       - run:
-          name: 📋 test
+          name: "📋 test"
           command: yarn run test
       - run:
-          name: 👷‍♂️ build
+          name: "👷‍♂️ build"
           command: yarn run build
