@@ -1,0 +1,38 @@
+{
+  "name": "koa-reload-middleware",
+  "version": "1.0.1",
+  "description": "Reload a middleware if is modified during development.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": "jameslnewell/koa-reload-middleware",
+  "files": [
+    "lib",
+    "index.js",
+    "index.d.ts"
+  ],
+  "dependencies": {
+    "@types/debug": "^0.0.31",
+    "@types/koa": "^2.0.48",
+    "@types/node": "^9.6.40",
+    "chalk": "^2.4.2",
+    "debug": "^4.1.1"
+  },
+  "devDependencies": {
+    "@shopify/jest-koa-mocks": "^2.1.0",
+    "@types/jest": "^23.3.9",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
+  },
+  "scripts": {
+    "check:linting": "tslint --project tsconfig.json",
+    "check:typing:sources": "tsc --noEmit --project tsconfig.sources.json",
+    "check:typing:tests": "tsc --noEmit --project tsconfig.tests.json",
+    "check": "yarn run check:linting && yarn run check:typing:sources && yarn run check:typing:tests",
+    "build": "tsc --project tsconfig.sources.json",
+    "test": "jest",
+    "prepublishOnly": "yarn run check && yarn run build && yarn run test"
+  },
+  "license": "MIT"
+}

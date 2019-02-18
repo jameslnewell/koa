@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "declaration": false,
+    "lib": ["esnext"],
+    "moduleResolution": "node",
+    "outDir": "lib",
+    "strict": true
+  },
+  "include": ["index.d.ts", "src"]
+}
