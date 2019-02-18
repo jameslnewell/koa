@@ -1,7 +1,7 @@
 import { Middleware } from "koa";
 import { createName } from "./utils/createName";
 import * as log from "./utils/log";
-import * as module from "./utils/module";
+import * as m from "./utils/module";
 import { ReloadMiddlewareOptions } from "./types";
 
 // TODO: reload only when changed - currently it reloads every refresh which is very noisy, particularly for frontend
@@ -20,11 +20,11 @@ export default function(
   return async (ctx, next) => {
     // clear the require cache
     if (requestCount > 0) {
-      module.clearCache();
+      m.clearCache();
     }
 
     // load the wrapped middleware
-    const middleware = await module.load(loader, context);
+    const middleware = await m.load(loader, context);
 
     // increment the count
     ++requestCount;

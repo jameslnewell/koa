@@ -1,6 +1,6 @@
 import { Middleware } from "koa";
 import { createName } from "./utils/createName";
-import * as module from "./utils/module";
+import * as m from "./utils/module";
 import * as log from "./utils/log";
 import { ReloadMiddlewareOptions } from "./types";
 
@@ -15,7 +15,7 @@ export default function(
   log.created(context);
 
   // start loading the wrapped middleware
-  const loading = module.load(loader, context);
+  const loading = m.load(loader, context);
 
   return async (...args) => {
     // wait for the wrapped middleware to load
