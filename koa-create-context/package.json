@@ -1,6 +1,6 @@
 {
   "name": "koa-create-context",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Create a context for mocking or whatever purpose.",
   "repository": "https://github.com/jameslnewell/koa",
   "author": "James Newell <james@digitaledgeit.com.au>",
@@ -22,8 +22,10 @@
     "koa": "^2.7.0"
   },
   "scripts": {
-    "build": "tsc",
-    "test": "jest"
+    "clean": "rm -rf lib",
+    "build": "tsc --project tsconfig.json && tsc --project tsconfig.tests.json",
+    "test": "jest",
+    "prepublishOnly": "yarn run clean && yarn run build && yarn run test"
   },
   "license": "MIT"
 }
