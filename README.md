@@ -1,5 +1,7 @@
 # koa
 
+[![CircleCI](https://circleci.com/gh/jameslnewell/koa.svg?style=svg)](https://circleci.com/gh/jameslnewell/koa)
+
 A number of packages made to work with koa.
 
 ## [koa-create-context](./koa-create-context)

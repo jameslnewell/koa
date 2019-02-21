@@ -1,5 +1,5 @@
 {
-  "name": "koa-utils",
+  "name": "koa",
   "private": true,
   "version": "1.0.0",
   "description": "A number of packages made to work with koa.",
