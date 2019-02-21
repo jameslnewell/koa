@@ -1,7 +1,7 @@
 # koa-reload-middleware
 
 [![CircleCI](https://circleci.com/gh/jameslnewell/koa.svg?style=svg)](https://circleci.com/gh/jameslnewell/koa)
-![npm](https://img.shields.io/npm/v/koa-reload-middleware.svg?style=for-the-badge)
+![npm](https://img.shields.io/npm/v/koa-reload-middleware.svg)
 
 Reload a middleware if is modified during development.
 

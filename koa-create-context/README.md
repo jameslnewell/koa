@@ -1,7 +1,7 @@
 # koa-create-context
 
 [![CircleCI](https://circleci.com/gh/jameslnewell/koa.svg?style=svg)](https://circleci.com/gh/jameslnewell/koa)
-![npm](https://img.shields.io/npm/v/koa-create-context.svg?style=for-the-badge)
+![npm](https://img.shields.io/npm/v/koa-create-context.svg)
 
 Create a context for mocking or whatever purpose.
 
