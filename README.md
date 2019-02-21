@@ -14,7 +14,7 @@ Create a context for mocking or whatever purpose.
 
 ![npm](https://img.shields.io/npm/v/koa-reload-middleware.svg)
 
-Reload a middleware if is modified during development.
+Reload a middleware if it is modified during development.
 
 ## [koa-router-middleware](./koa-router-middleware)
 
