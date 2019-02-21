@@ -23,6 +23,7 @@ jobs:
   check:
     executor: node
     steps:
+      - checkout
       - run:
           name: check
           command: yarn run check
@@ -30,6 +31,7 @@ jobs:
   build:
     executor: node
     steps:
+      - checkout
       - run:
           name: build
           command: yarn run build
@@ -37,6 +39,7 @@ jobs:
   test:
     executor: node
     steps:
+      - checkout
       - run:
           name: test
           command: yarn run test
