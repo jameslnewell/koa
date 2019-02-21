@@ -2,9 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/jameslnewell/koa.svg?style=svg)](https://circleci.com/gh/jameslnewell/koa)
 
-A number of packages mode to work with koa.
-
----
+A number of packages made to work with koa.
 
 ## Packages
 

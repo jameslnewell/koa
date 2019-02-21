@@ -2,7 +2,7 @@
   "name": "koa",
   "private": true,
   "version": "1.0.0",
-  "description": "A number of packages mode to work with koa.",
+  "description": "A number of packages made to work with koa.",
   "repository": "https://github.com/jameslnewell/koa",
   "author": "James Newell <james@digitaledgeit.com.au>",
   "workspaces": [
