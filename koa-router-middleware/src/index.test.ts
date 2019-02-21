@@ -206,13 +206,15 @@ describe("Router", () => {
   });
 
   it("should adjust the path when the path is /api/user", async () => {
+    expect.assertions(4);
+    apiMiddleware.mockImplementation((ctx, next) => {
+      expect(ctx.path).toEqual("/user");
+      return next();
+    });
     const ctx = createContext({ method: "post", path: "/api/user" });
     const next = jest.fn();
     await router.handle(ctx, next);
-    expect(apiMiddleware).toBeCalledWith(
-      expect.objectContaining({ path: "/user" }),
-      expect.any(Function)
-    );
+    expect(apiMiddleware).toBeCalledWith(ctx, expect.any(Function));
     expect(next).toBeCalledTimes(1);
     expect(ctx.path).toEqual("/api/user");
   });

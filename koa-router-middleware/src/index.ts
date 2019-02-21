@@ -127,19 +127,20 @@ export default class Router<S = any, C = {}> {
       }
 
       // call the next route
-      // TODO: set base path
-      // TODO: set original url
       let childPath = originalPath.substr(match.matched.length);
       if (!childPath.startsWith("/")) {
         childPath = `/${childPath}`;
       }
       ctx.path = childPath;
-      ctx.basePath = match.matched; // TODO:
+      ctx.basePath = match.matched;
       ctx.params = {
         ...originalParams,
         ...match.parameters
       };
-      await route.handle(ctx, dispatch);
+      await route.handle(ctx, () => {
+        ctx.path = originalPath;
+        return dispatch();
+      });
     };
 
     await dispatch();
