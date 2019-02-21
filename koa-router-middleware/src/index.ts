@@ -78,73 +78,70 @@ export default class Router<S = any, C = {}> {
     return this;
   }
 
-  middleware(): Middleware<S, C> {
-    return async (ctx, done) => {
-      const originalMethod = ctx.method;
-      const originalPath = ctx.path;
-      const originalParams = ctx.params;
+  handle: Middleware<S, C> = async (ctx, done) => {
+    const originalMethod = ctx.method;
+    const originalPath = ctx.path;
+    const originalParams = ctx.params;
 
-      let index = 0;
-      const dispatch = async (): Promise<any> => {
-        // check if there are any more routes to try and match
-        if (index === this.routes.length) {
-          await done();
-          return;
-        }
+    let index = 0;
+    const dispatch = async (): Promise<any> => {
+      // check if there are any more routes to try and match
+      if (index === this.routes.length) {
+        await done();
+        return;
+      }
 
-        // get the next route
-        const route = this.routes[index++];
+      // get the next route
+      const route = this.routes[index++];
 
-        // try and match the next route
-        const match = route.match(originalMethod, originalPath);
-        if (!match) {
-          log(
-            "route was not matched: request=%o route=%o match=%o",
-            {
-              method: originalMethod,
-              path: originalPath
-            },
-            {
-              method: route.method,
-              paths: route.paths
-            },
-            match
-          );
-          await dispatch();
-          return;
-        } else {
-          log(
-            "route was matched: request=%o route=%o match=%o",
-            {
-              method: originalMethod,
-              path: originalPath
-            },
-            {
-              method: route.method,
-              paths: route.paths
-            },
-            match
-          );
-        }
+      // try and match the next route
+      const match = route.match(originalMethod, originalPath);
+      if (!match) {
+        log(
+          "route was not matched: request=%o route=%o match=%o",
+          {
+            method: originalMethod,
+            path: originalPath
+          },
+          {
+            method: route.method,
+            paths: route.paths
+          },
+          match
+        );
+        await dispatch();
+        return;
+      } else {
+        log(
+          "route was matched: request=%o route=%o match=%o",
+          {
+            method: originalMethod,
+            path: originalPath
+          },
+          {
+            method: route.method,
+            paths: route.paths
+          },
+          match
+        );
+      }
 
-        // call the next route
-        // TODO: set base path
-        // TODO: set original url
-        let childPath = originalPath.substr(match.matched.length);
-        if (!childPath.startsWith("/")) {
-          childPath = `/${childPath}`;
-        }
-        ctx.path = childPath;
-        ctx.basePath = match.matched; // TODO:
-        ctx.params = {
-          ...originalParams,
-          ...match.parameters
-        };
-        console.log(ctx.params);
-        await route.handle(ctx, dispatch);
+      // call the next route
+      // TODO: set base path
+      // TODO: set original url
+      let childPath = originalPath.substr(match.matched.length);
+      if (!childPath.startsWith("/")) {
+        childPath = `/${childPath}`;
+      }
+      ctx.path = childPath;
+      ctx.basePath = match.matched; // TODO:
+      ctx.params = {
+        ...originalParams,
+        ...match.parameters
       };
-
-      await dispatch();
+      await route.handle(ctx, dispatch);
     };
-  }
+
+    await dispatch();
+  };
 }

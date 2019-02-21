@@ -1,6 +1,6 @@
 {
   "name": "koa-router-middleware",
-  "version": "1.0.0-preview.1",
+  "version": "1.0.0-preview.2",
   "description": "A router middleware for koa.",
   "repository": "https://github.com/jameslnewell/koa",
   "author": "James Newell <james@digitaledgeit.com.au>",
@@ -14,7 +14,8 @@
     "koa": "^2.7.0"
   },
   "dependencies": {
-    "@types/debug": "^4.1.1",
+    "@types/debug": "^4.1.2",
+    "debug": "^4.1.1",
     "path-to-regexp": "^3.0.0"
   },
   "scripts": {

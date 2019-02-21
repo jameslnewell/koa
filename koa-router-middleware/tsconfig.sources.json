@@ -4,8 +4,7 @@
   "compilerOptions": {
     "declaration": true,
     "module": "commonjs",
-    "outDir": "lib",
-    "target": "esnext"
+    "outDir": "lib"
   },
   "include": ["typings/**/*.d.ts", "src/**/*.ts"],
   "exclude": ["src/**/*.test.ts", "test/**/*.test.ts", "src/**/__fixtures__"]

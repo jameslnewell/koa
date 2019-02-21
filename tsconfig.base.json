@@ -3,6 +3,7 @@
   "compilerOptions": {
     "lib": ["esnext"],
     "moduleResolution": "node",
-    "strict": true
+    "strict": true,
+    "target": "esnext"
   }
 }
