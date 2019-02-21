@@ -42,16 +42,15 @@ jobs:
           command: yarn run test
 
 workflows:
-  version: 2
-  build_and_test:
+  check-build-test:
     jobs:
       - install
       - check:
-        requires:
-          - install
+          requires:
+            - install
       - build:
-        requires:
-          - install
+          requires:
+            - install
       - test:
-        requires:
-          - install
+          requires:
+            - install
