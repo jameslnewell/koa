@@ -1,0 +1,18 @@
+// used for typechecking tests via the CLI
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "baseUrl": "..",
+    "paths": {
+      "koa-create-context": ["koa-create-context/src"]
+    }
+  },
+  "include": [
+    "../*/typings/**/*.d.ts",
+    "../*/src/**/*.test.ts",
+    "../*/test/**/*.test.ts",
+    "../*/src/**/__fixtures__"
+  ],
+  "exclude": []
+}

@@ -24,7 +24,6 @@
     "lint:typing:tests": "tsc --noEmit --project tsconfig.tests.json",
     "lint": "yarn run lint:typing:sources && yarn run lint:typing:tests",
     "build": "tsc --project tsconfig.sources.json",
-    "test": "jest",
     "prepublishOnly": "yarn run check && yarn run test && yarn run build"
   },
   "license": "MIT"
