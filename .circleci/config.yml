@@ -1,8 +1,13 @@
 version: 2
+
+executors:
+  node:
+    docker:
+      - image: circleci/ruby:2.5.1-node-browsers
+
 jobs:
   install:
-    docker:
-      - image: circleci/node:latest
+    executor: node
     steps:
       - checkout
       - restore_cache:
@@ -16,24 +21,21 @@ jobs:
             - ./node_modules
 
   build:
-    docker:
-      - image: circleci/node:latest
+    executor: node
     steps:
       - run:
           name: check
           command: yarn run check
 
   build:
-    docker:
-      - image: circleci/node:latest
+    executor: node
     steps:
       - run:
           name: build
           command: yarn run build
 
   test:
-    docker:
-      - image: circleci/node:latest
+    executor: node
     steps:
       - run:
           name: test
