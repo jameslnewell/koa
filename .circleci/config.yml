@@ -20,13 +20,13 @@ jobs:
           paths:
             - ./node_modules
 
-  check:
+  lint:
     executor: node
     steps:
       - checkout
       - run:
-          name: check
-          command: yarn run check
+          name: lint
+          command: yarn run lint
 
   build:
     executor: node
@@ -45,10 +45,10 @@ jobs:
           command: yarn run test
 
 workflows:
-  check-build-test:
+  lint-build-test:
     jobs:
       - install
-      - check:
+      - lint:
           requires:
             - install
       - build:
