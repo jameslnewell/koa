@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  install:
     docker:
       - image: circleci/node:latest
     steps:
@@ -14,12 +14,42 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
       - run:
           name: check
           command: yarn run check
-      - run:
-          name: test
-          command: yarn run test
+
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
       - run:
           name: build
           command: yarn run build
+
+  test:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - run:
+          name: test
+          command: yarn run test
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - install
+      - check:
+        requires:
+          - install
+      - build:
+        requires:
+          - install
+      - test:
+        requires:
+          - install
