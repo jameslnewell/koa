@@ -1,6 +1,7 @@
 # koa-router-middleware
 
 [![CircleCI](https://circleci.com/gh/jameslnewell/koa.svg?style=svg)](https://circleci.com/gh/jameslnewell/koa)
+![npm](https://img.shields.io/npm/v/koa-router-middleware.svg?style=for-the-badge)
 
 A router middleware for koa.
 
