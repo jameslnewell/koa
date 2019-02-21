@@ -1,0 +1,15 @@
+{
+  "extends": "../tslint.base.json",
+  "rules": {
+    "ban": [
+      true,
+      { "name": ["fdescribe"], "message": "Don't focus tests!" },
+      { "name": ["describe", "only"], "message": "Don't focus tests!" },
+      { "name": ["describe", "skip"], "message": "Don't focus tests!" },
+      { "name": ["fit"], "message": "Don't focus tests!" },
+      { "name": ["it", "only"], "message": "Don't focus tests!" },
+      { "name": ["test", "only"], "message": "Don't focus tests!" },
+      { "name": ["it", "skip"], "message": "Don't focus tests!" }
+    ]
+  }
+}

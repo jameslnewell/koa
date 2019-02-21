@@ -220,7 +220,7 @@ describe("Router", () => {
   });
 
   it("should support nested routers when the path is /foo/bar", async () => {
-    const middleware = jest.fn(implementation);
+    var middleware = jest.fn(implementation);
     const ctx = createContext({ method: "get", path: "/foo/bar" });
     const next = jest.fn();
     const bar = new Router().get("/bar", middleware);

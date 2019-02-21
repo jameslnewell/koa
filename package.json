@@ -10,7 +10,6 @@
     "koa-reload-middleware",
     "koa-router-middleware"
   ],
-  "license": "MIT",
   "dependencies": {
     "@jameslnewell/editor-config": "^1.0.0",
     "@jameslnewell/prettier-config": "^1.0.0",
@@ -41,8 +40,11 @@
   },
   "scripts": {
     "clean": "yarn workspaces run clean",
-    "lint": "yarn workspaces run lint",
+    "lint:linting:sources": "tslint --config .configs/tslint.linting.sources.json --project .configs/tsconfig.linting.sources.json",
+    "lint:linting:tests": "tslint --config .configs/tslint.linting.tests.json --project .configs/tsconfig.linting.tests.json",
+    "lint": "yarn run lint:linting:sources && yarn run lint:linting:tests && yarn workspaces run lint",
     "build": "yarn workspaces run build",
     "test": "yarn workspaces run test"
-  }
+  },
+  "license": "MIT"
 }

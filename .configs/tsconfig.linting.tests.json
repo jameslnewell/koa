@@ -1,0 +1,9 @@
+// used for linting tests
+{
+  "extends": "../tsconfig.base.json",
+  "include": [
+    "../*/typings/**/*.d.ts",
+    "../*/src/**/*.test.ts",
+    "../*/src/**/__fixtures__"
+  ]
+}
