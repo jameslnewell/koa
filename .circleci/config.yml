@@ -20,7 +20,7 @@ jobs:
           paths:
             - ./node_modules
 
-  build:
+  check:
     executor: node
     steps:
       - run:
