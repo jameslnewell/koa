@@ -19,11 +19,17 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
 
   lint:
     executor: node
     steps:
       - checkout
+      - attach_workspace:
+          at: .
       - run:
           name: lint
           command: yarn run lint
@@ -32,6 +38,8 @@ jobs:
     executor: node
     steps:
       - checkout
+      - attach_workspace:
+          at: .
       - run:
           name: build
           command: yarn run build
@@ -40,6 +48,8 @@ jobs:
     executor: node
     steps:
       - checkout
+      - attach_workspace:
+          at: .
       - run:
           name: test
           command: yarn run test
