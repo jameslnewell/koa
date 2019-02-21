@@ -1,4 +1,5 @@
 import * as log from "./log";
+import { Loader } from "../../types";
 
 export function clearCache() {
   const files = Object.keys(require.cache).filter(
@@ -8,7 +9,10 @@ export function clearCache() {
   log.cleared(files);
 }
 
-export function load(loader: () => Promise<any>, options: log.LogOptions) {
+export function load<State, Context>(
+  loader: Loader<State, Context>,
+  options: log.LogOptions
+) {
   return loader().then(
     module => {
       // log that the wrapped middleware was loaded

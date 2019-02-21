@@ -140,6 +140,7 @@ export default class Router<S = any, C = {}> {
           ...originalParams,
           ...match.parameters
         };
+        console.log(ctx.params);
         await route.handle(ctx, dispatch);
       };
 

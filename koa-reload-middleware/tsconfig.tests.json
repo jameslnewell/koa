@@ -5,6 +5,7 @@
     "noEmit": true
   },
   "include": [
+    "types.ts",
     "typings/**/*.d.ts",
     "src/**/*.test.ts",
     "test/**/*.test.ts",

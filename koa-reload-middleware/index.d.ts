@@ -1,12 +1,9 @@
 import { Middleware } from "koa";
+import { Loader, Options } from "./types";
 
-export interface ReloadMiddlewareOptions {
-  name?: string;
-  verbose?: boolean;
-}
+declare function createReloadMiddleware<State = any, Context = {}>(
+  loader: Loader<State, Context>,
+  options?: Options
+): Middleware<State, Context>;
 
-declare function middleware(
-  loader: () => Promise<any>,
-  options?: ReloadMiddlewareOptions
-): Middleware;
-export default middleware;
+export default createReloadMiddleware;

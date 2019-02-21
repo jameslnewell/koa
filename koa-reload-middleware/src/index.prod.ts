@@ -2,12 +2,12 @@ import { Middleware } from "koa";
 import { createName } from "./utils/createName";
 import * as m from "./utils/module";
 import * as log from "./utils/log";
-import { ReloadMiddlewareOptions } from "./types";
+import { Loader, Options } from "../types";
 
-export default function(
-  loader: () => Promise<any>,
-  options: ReloadMiddlewareOptions = {}
-): Middleware {
+const createReloadMiddleware = <State = any, Custom = {}>(
+  loader: Loader<State, Custom>,
+  options: Options = {}
+): Middleware<State, Custom> => {
   const { name = createName(), verbose = true } = options;
   const context = { name, verbose };
 
@@ -24,4 +24,6 @@ export default function(
     // execute the wrapped middleware
     return middleware(...args);
   };
-}
+};
+
+export default createReloadMiddleware;

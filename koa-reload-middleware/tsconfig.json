@@ -4,5 +4,5 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["index.d.ts", "src", "test"]
+  "include": ["types.ts", "index.d.ts", "src", "test"]
 }

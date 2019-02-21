@@ -2,14 +2,14 @@ import { Middleware } from "koa";
 import { createName } from "./utils/createName";
 import * as log from "./utils/log";
 import * as m from "./utils/module";
-import { ReloadMiddlewareOptions } from "./types";
+import { Loader, Options } from "../types";
 
 // TODO: reload only when changed - currently it reloads every refresh which is very noisy, particularly for frontend
 
-export default function(
-  loader: () => Promise<any>,
-  options: ReloadMiddlewareOptions = {}
-): Middleware {
+const createReloadMiddleware = <State = any, Custom = {}>(
+  loader: Loader<State, Custom>,
+  options: Options = {}
+): Middleware<State, Custom> => {
   const { name = createName(), verbose = true } = options;
   const context = { name, verbose };
   let requestCount = 0;
@@ -32,4 +32,6 @@ export default function(
     // execute the wrapped middleware
     return middleware(ctx, next);
   };
-}
+};
+
+export default createReloadMiddleware;

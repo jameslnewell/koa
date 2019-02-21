@@ -8,6 +8,7 @@
   "files": [
     "lib",
     "index.js",
+    "types.ts",
     "index.d.ts"
   ],
   "peerDependencies": {

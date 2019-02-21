@@ -7,6 +7,6 @@
     "outDir": "lib",
     "target": "esnext"
   },
-  "include": ["index.d.ts", "typings/**/*.d.ts", "src/**/*.ts"],
+  "include": ["types.ts", "index.d.ts", "typings/**/*.d.ts", "src/**/*.ts"],
   "exclude": ["src/**/*.test.ts", "test/**/*.test.ts", "src/**/__fixtures__"]
 }
