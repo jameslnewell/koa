@@ -31,6 +31,9 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          name: symlink
+          command: yarn
+      - run:
           name: lint
           command: yarn run lint
 
@@ -41,6 +44,9 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          name: symlink
+          command: yarn
+      - run:
           name: build
           command: yarn run build
 
@@ -50,6 +56,9 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
+      - run:
+          name: symlink
+          command: yarn
       - run:
           name: test
           command: yarn run test
