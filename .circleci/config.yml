@@ -75,4 +75,4 @@ workflows:
             - install
       - test:
           requires:
-            - install
+            - build 
