@@ -7,8 +7,7 @@ module.exports = {
   },
   globals: {
     "ts-jest": {
-      tsConfig:
-        "/Users/localuser/code/@jameslnewell/koa/.configs/tsconfig.tests.json"
+      tsConfig: ".configs/tsconfig.tests.json"
     }
   }
 };
