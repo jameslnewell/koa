@@ -52,7 +52,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - node_modules
+            - lib
 
   test:
     executor: node
