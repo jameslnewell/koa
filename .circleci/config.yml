@@ -60,6 +60,9 @@ jobs:
           name: symlink
           command: yarn
       - run:
+          name: build
+          command: yarn run build
+      - run:
           name: test
           command: yarn run test
 
