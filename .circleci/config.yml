@@ -49,10 +49,6 @@ jobs:
       - run:
           name: build
           command: yarn run build
-      - persist_to_workspace:
-          root: .
-          paths:
-            - node_modules
 
   test:
     executor: node
@@ -71,12 +67,12 @@ workflows:
   lint-build-test:
     jobs:
       - install
-      - lint:
-          requires:
-            - install
       - build:
           requires:
             - install
+      - lint:
+          requires:
+            - build # because references to other libraries
       - test:
           requires:
             - build 
