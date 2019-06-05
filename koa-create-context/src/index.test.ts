@@ -42,16 +42,12 @@ describe("createContext()", () => {
 
   it("should contain the headers on the request", () => {
     const ctx = createContext({
-      request: {
+      req: {
         header: {
           authorization: "Bearer 123"
-        },
-
-        toJSON() {
-          return this;
         }
       }
     });
-    expect(ctx.request.header.authorization).toEqual("Bearer 123");
+    expect(ctx.get("Authorization")).toEqual("Bearer 123");
   });
 });
