@@ -39,4 +39,19 @@ describe("createContext()", () => {
       })
     );
   });
+
+  it("should contain the headers on the request", () => {
+    const ctx = createContext({
+      request: {
+        header: {
+          authorization: "Bearer 123"
+        },
+
+        toJSON() {
+          return this;
+        }
+      }
+    });
+    expect(ctx.request.header.authorization).toEqual("Bearer 123");
+  });
 });
