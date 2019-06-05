@@ -23,3 +23,37 @@ Reload a middleware if it is modified during development.
 ![npm](https://img.shields.io/npm/v/koa-router-middleware.svg)
 
 A router middleware for koa.
+
+## Development
+
+### Installation
+
+To install the dependencies for all packages, run:
+
+```
+yarn
+```
+
+### Lint
+
+To lint all packages, run:
+
+```
+yarn run lint
+```
+
+### Build
+
+To build all packages, run:
+
+```
+yarn run build
+```
+
+### Test
+
+To test all packages, run:
+
+```
+yarn run test
+```
