@@ -51,5 +51,5 @@ export default new Router()
   })
   .delete("/cat/:id", ctx => {
     ctx.status = 200;
-  }).handle;
+  }).middleware;
 ```
